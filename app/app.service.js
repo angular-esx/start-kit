@@ -8,4 +8,10 @@ function _applicationService (){
   }
 }
 
-export var applicationService = ngCore.Class(new _applicationService());
+export var applicationService = ngCore.Class({
+  constructor: function(){},
+
+  getExample: function(){
+    return null;
+  }
+});
