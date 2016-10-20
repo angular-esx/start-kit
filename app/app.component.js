@@ -26,7 +26,7 @@ export var applicationComponent = Component({
     }
   ],
 
-  ngAfterViewInit: function() {
+  ngAfterContentInit: function() {
     var _example = this.appService.getExample();
     
     if(_example){
