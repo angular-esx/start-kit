@@ -1,33 +1,40 @@
-import * as ngCore from '@angular/core';
+import {
+  Component, 
+  ViewChild,
+  ViewContainerRef,
+  ComponentFactoryResolver
+} from '@angular/core';
 
 import { applicationService } from './app.service';
 
-export var application = ngCore.Component({
+export var applicationComponent = Component({
   selector: 'my-app',
   template: '<div #example></div>',
   styleUrls: ['./app.css'],
   queries: {
-    viewContainerRef: new ngCore.ViewChild('example', { read: ngCore.ViewContainerRef })
+    viewContainerRef: new ViewChild('example', { read: ViewContainerRef })
   }
 })
 .Class({
   constructor: [
-    ngCore.DynamicComponentLoader,
+    ComponentFactoryResolver,
     applicationService,
 
-    function (componentLoader, appService){
-      this.componentLoader = componentLoader;
+    function (componentFactoryResolver, appService){
+      this.componentFactoryResolver = componentFactoryResolver;
       this.appService = appService;
     }
   ],
 
   ngAfterViewInit: function() {
     var _example = this.appService.getExample();
-
+    
     if(_example){
-      this.componentLoader.loadNextToLocation(
-        _example, 
-        this.viewContainerRef
+      this.viewContainerRef.createComponent
+      (
+        this.componentFactoryResolver.resolveComponentFactory(_example),
+        this.viewContainerRef.length,
+        this.viewContainerRef.parentInjector
       );
     }
   }

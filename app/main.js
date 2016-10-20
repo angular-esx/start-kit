@@ -1,18 +1,7 @@
-import * as ngCore from '@angular/core';
-import { bootstrap } from '@angular/platform-browser-dynamic';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { applicationService } from './app.service';
-import { application } from './app.component';
+import { applicationModule } from './app.module';
 
 document.addEventListener('DOMContentLoaded', function(){
-  bootstrap(application, [
-    { provide: applicationService, useClass: ngCore.Class(new _fakeApplicationService()) }
-  ])
+  platformBrowserDynamic().bootstrapModule(applicationModule)
 });
-
-function _fakeApplicationService() {
-  this.constructor = function fakeApplicationService(){};
-
-  this.getExample = function(){
-  };
-}

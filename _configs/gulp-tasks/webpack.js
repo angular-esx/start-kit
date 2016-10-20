@@ -12,6 +12,14 @@ function _task (params){
       output: {
         filename: `[name].js`
       },
+      plugins: [
+        /*
+          This plugin is used temporarily to solve the issue:
+          WARNING in ./~/@angular/core/src/linker/system_js_ng_module_factory_loader.js 
+          Critical dependency: the request of a dependency is an expression 
+        */
+        new this.webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/, __dirname),
+      ],
       module: {
         loaders: [
           {

@@ -1,14 +1,6 @@
-import * as ngCore from '@angular/core';
+import { Class } from '@angular/core';
 
-function _applicationService (){
-  this.constructor = function applicationService(){};
-
-  this.getExample = function(){
-    return null;
-  }
-}
-
-export var applicationService = ngCore.Class({
+export var applicationService = Class({
   constructor: function(){},
 
   getExample: function(){
