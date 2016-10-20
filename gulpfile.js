@@ -55,7 +55,10 @@
     return require(_GULP_TASKS + taskName)({
       gulp: _gulp,
       plugins: _plugins,
-      args: _plugins.yargs.argv
+      args: _plugins.yargs.argv,
+      paths: {
+        node_modules: './node_modules'
+      }
     });
   }
 })();
